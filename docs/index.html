@@ -9,7 +9,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #fff; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-    .container { text-align: center; max-width: 700px; padding: 2rem; }
+    .container { text-align: center; max-width: 800px; padding: 2rem; }
     .badge { display: inline-block; background: rgba(255,215,0,0.15); color: #ffd700; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.875rem; font-weight: 600; margin-bottom: 1.5rem; }
     h1 { font-size: 4rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     p { font-size: 1.25rem; color: #a0a0a0; margin-bottom: 2rem; line-height: 1.6; }
@@ -24,6 +24,9 @@
     .feature p { font-size: 0.875rem; margin: 0; color: #888; }
     .tech-stack { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 2rem; }
     .tech { background: rgba(255,255,255,0.08); padding: 0.35rem 0.75rem; border-radius: 8px; font-size: 0.75rem; color: #aaa; }
+    .status { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(34,197,94,0.15); color: #22c55e; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.875rem; font-weight: 600; margin-top: 2rem; }
+    .status-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
     @media (max-width: 640px) {
       h1 { font-size: 2.5rem; }
       .features { grid-template-columns: 1fr; }
@@ -33,30 +36,62 @@
 </head>
 <body>
   <div class="container">
-    <span class="badge">🚀 Coming Soon</span>
+    <span class="badge">🚀 Live on GitHub</span>
     <h1>TiokariShop</h1>
     <p>Premium fashion & lifestyle e-commerce platform. Shop clothes, shoes, perfumes, and accessories with AI-powered shopping assistance and WhatsApp integration.</p>
     <div>
       <a href="https://github.com/tiokarishop/tiokarishop" class="btn">View on GitHub</a>
-      <a href="https://github.com/tiokarishop/tiokarishop" class="btn btn-outline">Documentation</a>
+      <a href="https://github.com/tiokarishop/tiokarishop/blob/main/SETUP.md" class="btn btn-outline">Documentation</a>
     </div>
+
     <div class="features">
       <div class="feature">
         <div class="feature-icon">🛍️</div>
-        <h3>Curated Collections</h3>
-        <p>Hand-picked fashion from top brands and designers</p>
+        <h3>Product Catalog</h3>
+        <p>Categories, variants, search & filtering</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🛒</div>
+        <h3>Shopping Cart</h3>
+        <p>Persistent cart with checkout flow</p>
       </div>
       <div class="feature">
         <div class="feature-icon">🤖</div>
         <h3>AI Assistant</h3>
-        <p>Smart shopping recommendations and support</p>
+        <p>Smart recommendations & support</p>
       </div>
       <div class="feature">
         <div class="feature-icon">💬</div>
         <h3>WhatsApp Integration</h3>
-        <p>Order updates and support via WhatsApp</p>
+        <p>Order updates & auto-reply bot</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <h3>Analytics</h3>
+        <p>Sales charts & insights</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🎫</div>
+        <h3>Discounts</h3>
+        <p>Coupon codes & promotions</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📧</div>
+        <h3>Email Notifications</h3>
+        <p>Order confirmations & updates</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📱</div>
+        <h3>PWA Support</h3>
+        <p>Installable & offline capable</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔍</div>
+        <h3>SEO Optimized</h3>
+        <p>Sitemap, meta tags & structured data</p>
       </div>
     </div>
+
     <div class="tech-stack">
       <span class="tech">Next.js 16</span>
       <span class="tech">TypeScript</span>
@@ -66,6 +101,13 @@
       <span class="tech">Stripe</span>
       <span class="tech">Tailwind CSS</span>
       <span class="tech">WhatsApp API</span>
+      <span class="tech">AI Chatbot</span>
+      <span class="tech">PWA</span>
+    </div>
+
+    <div class="status">
+      <span class="status-dot"></span>
+      All Systems Operational
     </div>
   </div>
 </body>
