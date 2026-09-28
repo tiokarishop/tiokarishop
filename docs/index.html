@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TiokariShop - Fashion & Lifestyle</title>
+  <meta name="description" content="Premium fashion & lifestyle e-commerce platform with AI chatbot, WhatsApp integration, and abandoned cart recovery">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #fff; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .container { text-align: center; max-width: 700px; padding: 2rem; }
+    .badge { display: inline-block; background: rgba(255,215,0,0.15); color: #ffd700; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.875rem; font-weight: 600; margin-bottom: 1.5rem; }
+    h1 { font-size: 4rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    p { font-size: 1.25rem; color: #a0a0a0; margin-bottom: 2rem; line-height: 1.6; }
+    .btn { display: inline-block; padding: 1rem 2.5rem; background: #fff; color: #000; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: transform 0.2s, box-shadow 0.2s; margin: 0.5rem; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.2); }
+    .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.3); }
+    .btn-outline:hover { border-color: #fff; box-shadow: none; }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .feature { background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); }
+    .feature-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .feature h3 { font-size: 1rem; margin-bottom: 0.5rem; color: #ffd700; }
+    .feature p { font-size: 0.875rem; margin: 0; color: #888; }
+    .tech-stack { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 2rem; }
+    .tech { background: rgba(255,255,255,0.08); padding: 0.35rem 0.75rem; border-radius: 8px; font-size: 0.75rem; color: #aaa; }
+    @media (max-width: 640px) {
+      h1 { font-size: 2.5rem; }
+      .features { grid-template-columns: 1fr; }
+      .btn { display: block; margin: 0.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span class="badge">🚀 Coming Soon</span>
+    <h1>TiokariShop</h1>
+    <p>Premium fashion & lifestyle e-commerce platform. Shop clothes, shoes, perfumes, and accessories with AI-powered shopping assistance and WhatsApp integration.</p>
+    <div>
+      <a href="https://github.com/tiokarishop-tech/tiokarishop" class="btn">View on GitHub</a>
+      <a href="https://github.com/tiokarishop-tech/tiokarishop" class="btn btn-outline">Documentation</a>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">🛍️</div>
+        <h3>Curated Collections</h3>
+        <p>Hand-picked fashion from top brands and designers</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🤖</div>
+        <h3>AI Assistant</h3>
+        <p>Smart shopping recommendations and support</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">💬</div>
+        <h3>WhatsApp Integration</h3>
+        <p>Order updates and support via WhatsApp</p>
+      </div>
+    </div>
+    <div class="tech-stack">
+      <span class="tech">Next.js 16</span>
+      <span class="tech">TypeScript</span>
+      <span class="tech">Prisma</span>
+      <span class="tech">PostgreSQL</span>
+      <span class="tech">Clerk</span>
+      <span class="tech">Stripe</span>
+      <span class="tech">Tailwind CSS</span>
+      <span class="tech">WhatsApp API</span>
+    </div>
+  </div>
+</body>
+</html>
