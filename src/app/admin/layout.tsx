@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LayoutDashboard, Package, ShoppingCart, Users, Tag, BarChart3, Settings, MessageCircle, ShoppingBag, Percent } from "lucide-react";
+import { LayoutDashboard, Package, ShoppingCart, Users, Tag, BarChart3, Settings, MessageCircle, ShoppingBag, Percent, TrendingUp } from "lucide-react";
 
 export default function AdminLayout({
   children,
@@ -25,6 +25,7 @@ export default function AdminLayout({
             { href: "/admin/categories", icon: Tag, label: "Categories" },
             { href: "/admin/analytics", icon: BarChart3, label: "Analytics" },
             { href: "/admin/whatsapp", icon: MessageCircle, label: "WhatsApp" },
+            { href: "/admin/abandoned-carts", icon: ShoppingBag, label: "Abandoned Carts" },
             { href: "/admin/abandoned-carts", icon: ShoppingBag, label: "Abandoned Carts" },
             { href: "/admin/discounts", icon: Percent, label: "Discounts" },
             { href: "/admin/settings", icon: Settings, label: "Settings" },
