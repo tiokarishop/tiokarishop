@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "regions": ["iad1"],
+  "crons": [
+    {
+      "path": "/api/abandoned-cart/remind",
+      "schedule": "0 * * * *"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_APP_URL": "@next_public_app_url"
+  }
+}
