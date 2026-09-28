@@ -5,17 +5,67 @@ import { formatPrice } from "@/lib/utils";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Lock, CreditCard, Truck, CheckCircle } from "lucide-react";
+import { Lock, CreditCard, Truck, CheckCircle, Tag, X } from "lucide-react";
 
 export default function CheckoutPage() {
   const { items, subtotal, clearCart } = useCart();
   const [step, setStep] = useState<"cart" | "shipping" | "payment">("cart");
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
+  const [discountCode, setDiscountCode] = useState("");
+  const [appliedDiscount, setAppliedDiscount] = useState<{
+    code: string;
+    amount: number;
+  } | null>(null);
+  const [discountError, setDiscountError] = useState("");
+  const [isApplying, setIsApplying] = useState(false);
 
-  const shipping = subtotal() > 75 ? 0 : 9.99;
-  const tax = subtotal() * 0.08;
-  const total = subtotal() + shipping + tax;
+  const subtotalAmount = subtotal();
+  const discountAmount = appliedDiscount?.amount || 0;
+  const shipping = subtotalAmount - discountAmount > 75 ? 0 : 9.99;
+  const tax = (subtotalAmount - discountAmount) * 0.08;
+  const total = subtotalAmount - discountAmount + shipping + tax;
+
+  const handleApplyDiscount = async () => {
+    if (!discountCode.trim()) return;
+
+    setIsApplying(true);
+    setDiscountError("");
+
+    try {
+      const res = await fetch("/api/discount/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: discountCode,
+          subtotal: subtotalAmount,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.valid) {
+        setAppliedDiscount({
+          code: discountCode.toUpperCase(),
+          amount: data.discountAmount,
+        });
+        setDiscountError("");
+      } else {
+        setDiscountError(data.message);
+        setAppliedDiscount(null);
+      }
+    } catch (error) {
+      setDiscountError("Failed to apply discount");
+    }
+
+    setIsApplying(false);
+  };
+
+  const removeDiscount = () => {
+    setAppliedDiscount(null);
+    setDiscountCode("");
+    setDiscountError("");
+  };
 
   const handlePlaceOrder = async () => {
     setIsProcessing(true);
@@ -223,11 +273,63 @@ export default function CheckoutPage() {
         <div className="lg:col-span-1">
           <div className="bg-gray-50 rounded-xl p-6 sticky top-24">
             <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
+
+            {/* Discount Code Input */}
+            <div className="mb-4">
+              {appliedDiscount ? (
+                <div className="flex items-center justify-between bg-green-50 border border-green-200 rounded-lg px-3 py-2">
+                  <div className="flex items-center gap-2">
+                    <Tag className="w-4 h-4 text-green-600" />
+                    <span className="text-sm font-medium text-green-700">
+                      {appliedDiscount.code}
+                    </span>
+                    <span className="text-sm text-green-600">
+                      -{formatPrice(appliedDiscount.amount)}
+                    </span>
+                  </div>
+                  <button
+                    onClick={removeDiscount}
+                    className="p-1 hover:bg-green-100 rounded"
+                  >
+                    <X className="w-4 h-4 text-green-600" />
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={discountCode}
+                      onChange={(e) => setDiscountCode(e.target.value.toUpperCase())}
+                      placeholder="Discount code"
+                      className="flex-1 border rounded-lg px-3 py-2 text-sm uppercase"
+                    />
+                    <button
+                      onClick={handleApplyDiscount}
+                      disabled={isApplying || !discountCode.trim()}
+                      className="bg-black text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors disabled:bg-gray-300"
+                    >
+                      {isApplying ? "..." : "Apply"}
+                    </button>
+                  </div>
+                  {discountError && (
+                    <p className="text-xs text-red-500 mt-1">{discountError}</p>
+                  )}
+                </div>
+              )}
+            </div>
+
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-600">Subtotal</span>
-                <span>{formatPrice(subtotal())}</span>
+                <span>{formatPrice(subtotalAmount)}</span>
               </div>
+              {appliedDiscount && (
+                <div className="flex justify-between text-green-600">
+                  <span>Discount ({appliedDiscount.code})</span>
+                  <span>-{formatPrice(discountAmount)}</span>
+                </div>
+              )}
               <div className="flex justify-between">
                 <span className="text-gray-600">Shipping</span>
                 <span>{shipping === 0 ? "Free" : formatPrice(shipping)}</span>

@@ -177,3 +177,24 @@ model WishlistItem {
 
   @@unique([userId, productId])
 }
+
+model DiscountCode {
+  id             String    @id @default(cuid())
+  code           String    @unique
+  type           DiscountType
+  value          Float
+  minOrderAmount Float?
+  maxDiscount    Float?
+  usageLimit     Int?
+  usageCount     Int       @default(0)
+  startsAt       DateTime  @default(now())
+  expiresAt      DateTime?
+  isActive       Boolean   @default(true)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED
+}
